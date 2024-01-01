@@ -52,7 +52,7 @@ $conn = (new Connection())->getConnection();
                         Other
                     </p>
                     <ul class="menu-list">
-                        <li><a>Signout</a></li>
+                        <li><a href="../../home.php">Signout <?php session_abort();?></a></li>
                     </ul>
                 </aside>
             </div>

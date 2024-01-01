@@ -14,7 +14,7 @@ if (isset($_POST['submit'])) {
     $message = $_POST['message']; 
     $status = 0;
     
-    $contact = new Contact($user, $email, $message,$status); // 0 as not treated
+    $contact = new Contact($user, $email, $message,$status,$conn); // 0 as not treated
 
     $contact->setUserContact($user);
     $contact->setEmailContact($email);
@@ -26,10 +26,7 @@ if (isset($_POST['submit'])) {
     $messageContact = $contact->getMsgContact();
     $statusContact = $contact->getStatusContact();
     
-    $stmt = $conn->prepare("INSERT INTO TEST_I.CONTACT (user, email, msg, stat) VALUES (?, ?, ?,?)");
-    $stmt->bind_param("ssss", $userContact, $emailContact, $messageContact, $statusContact);
-    $stmt->execute();
-    $stmt->close();
+    $contact->insertData($userContact,$emailContact,$messageContact,$status);
 }
 
 $conn->close();

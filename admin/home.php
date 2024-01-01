@@ -57,7 +57,7 @@ $conn = (new Connection())->getConnection();
                         Other
                     </p>
                     <ul class="menu-list">
-                        <li><a>Signout</a></li>
+                    <a href="../home.php">Signout <?php session_abort();?>
                     </ul>
                 </aside>
             </div>
@@ -148,7 +148,7 @@ $conn = (new Connection())->getConnection();
                                                       echo '<tr>
                                                             <td width="5%"><i class="fa fa-bell-o"></i></td>
                                                             <td>New Message From '.$user.'</td>
-                                                            <td class="level-right"><a class="button is-small is-primary" href="#">Action</a></td>
+                                                            <td class="level-right"><a class="button is-small is-info" href="contact/contact.php">Action</a></td>
                                                             </tr>';
                                                       $newMessageFound = true;
                                                 }
