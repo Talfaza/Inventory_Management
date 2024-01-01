@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif&family=Nunito+Sans:wght@400;600&display=swap');
+
+.va {
+  display: flex;
+  align-items: center;
+}
+
+html {
+  font-family: 'Nunito Sans', sans-serif;
+  color: white;
+}
+
+
+.navbar .navbar-item.is-active {
+  color: #e4e2ff;
+  font-weight: 700;
+}
+
+
+
+.navbar .navbar-item a {
+  margin-left: 1rem;
+}
+
+.blog-posts {
+  min-height: 100vh;
+  background: #191b1f;
+  padding-top: 4rem;
+  padding-bottom: 10rem;
+}
+
+.blog-posts article {
+  padding: 1.5rem;
+}
+
+
+
+
+
+
