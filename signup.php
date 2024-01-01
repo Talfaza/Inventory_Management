@@ -12,7 +12,7 @@ if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $password = $_POST['pass'];
 
-    $User = new User($username,$email,$password);
+    $User = new User($username,$email,$password,$conn);
 
     $User->setUsername($username);
     $User->setEmail($email);
@@ -25,26 +25,13 @@ if (isset($_POST['submit'])) {
     $email = $User->getEmail();
     $password = $User->getPassword();
 
-    $check_query = $conn->prepare("SELECT * FROM TEST_I.USER WHERE email = ?");
-    $check_query->bind_param("s",$email);
-    $check_query->execute();
+    $User->fetchEmail();
     $check_result = $check_query->get_result();
 
     if ($check_result->num_rows > 0) {
         echo "Error: Email is already in use. Please choose a different email.";
     } else {
-        $insert_query = $conn->prepare("INSERT INTO TEST_I.USER (user, email, pass) VALUES (?, ?, ?)");
-        $insert_query->bind_param("sss", $username, $email, $password);
-
-        if ($insert_query->execute()) {
-      
-            header('Location: login.php');
-            exit;
-        } else {
-            echo "Error: " . $insert_query->error;
-        }
-
-        $insert_query->close();
+        $User->insertUser();
     }
 
     $check_query->close();

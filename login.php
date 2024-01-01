@@ -6,19 +6,21 @@ $conn = (new Connection())->getConnection();
 
 $user_value = "";
 $pass_value = "";
+$email = "";
+
+$User = new User($user_value,$email,$pass_value,$conn);
 
 if (isset($_POST['submit'])) {
     $user_value = $_POST['user'];
     $pass_value = $_POST['password'];
 
-    $stmt = $conn->prepare("SELECT * FROM TEST_I.USER WHERE user = ?");
-    $stmt->bind_param("s", $user_value);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $User->fetchUser($user_value);
+    $result = $User->fetchUser($user_value);
 
-    $stmt->close();
+    
 
-    if ($result->num_rows > 0) {
+
+    if ($User->numRow($result) > 0) {
         $row = $result->fetch_assoc();
 
         $check_user = $row['user'];
