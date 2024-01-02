@@ -14,7 +14,8 @@ $name = NULL;
 $price = NULL;
 $quantity = NULL;
 $cartNumber = NULL;
-$product = new Product($name,$price,$quantity);
+$qte_bought = NULL;
+$product = new Product($name,$price,$quantity,$conn);
 $cart = new Cart($name,$price,$quantity,$conn,$userId);
 
 if(isset($_GET['pid'])){
@@ -49,8 +50,8 @@ if(isset($_GET['pid'])){
         die("Error : ". mysqli_error($conn));
       }
 }
+if (!($product->updateQte($id) == TRUE )) {$cart->insertCart();}
 
-$cart->insertCart();
 
 
  
@@ -110,7 +111,9 @@ $cart->insertCart();
                     </div>
                 </div>
             </nav>
+            
         </div>
+        
         <div class="hero-body">
             <div class="container has-text-centered">
                 <div class="columns is-vcentered">
@@ -120,6 +123,7 @@ $cart->insertCart();
                         </figure>
                     </div>
                     <div class="column is-6 is-offset-1">
+                        <?php echo $product->updateQte($id);?>
                         <h1 class="title is-2">
                             <?php echo $name; ?>
                         </h1><br>
@@ -131,7 +135,33 @@ $cart->insertCart();
                         </h2>
                         <form action="" method="post">
                         <div class="field is-horizontal">
-                            <h2 class="subtitle is-5" >
+                            <?php if ($product->getQuantity() == 0){
+
+                                echo '<h2 class="subtitle is-5" >
+                                Quantity :&nbsp; 
+                            </h2>
+                            <div class="field-body">
+                                <div class="field">
+                                    <p class="control is-expanded">
+                                        <input name="qte_product" class="input is-primary" type="text" placeholder="Quantity" disabled>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <p class="has-text-centered">
+                            <button name="submit" type="submit" class="button is-medium is-primary "><i class="fa-solid fa-cart-shopping"></i>&nbsp; Add to cart</button>
+                        </p><br>
+                        <p class="subtitle is-6 has-text-danger has-text-centered">
+                                The current product is unavailable
+                        </p>
+                        
+                        ';
+
+                                
+
+                            } else{
+                                echo '  <h2 class="subtitle is-5" >
                                 Quantity :&nbsp; 
                             </h2>
                             <div class="field-body">
@@ -145,7 +175,11 @@ $cart->insertCart();
                         <br>
                         <p class="has-text-centered">
                             <button name="submit" type="submit" class="button is-medium is-primary "><i class="fa-solid fa-cart-shopping"></i>&nbsp; Add to cart</button>
-                        </p>
+                        </p>';
+
+                            }?>
+                            
+                          
                         </form>
                        
                     </div>
@@ -153,7 +187,21 @@ $cart->insertCart();
             </div>
         </div>
     </section>
-    <script src="../js/bulma.js"></script>
+    <script>
+
+            document.addEventListener('DOMContentLoaded', () => {
+            (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+                const $notification = $delete.parentNode;
+
+                $delete.addEventListener('click', () => {
+                $notification.parentNode.removeChild($notification);
+                });
+            });
+        });
+
+
+
+    </script>
 </body>
 
 </html>
