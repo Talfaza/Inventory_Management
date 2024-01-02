@@ -24,13 +24,7 @@ if(isset($_GET['editid'])){
 
        $query1 = "UPDATE TEST_I.PRODUCT SET product_name = '$name', product_price_id = '$price', product_quantity_id = '$quantity' WHERE id_product = $id";
        $result1 = mysqli_query($conn, $query1);
-
-       $query2 = "UPDATE TEST_I.PRICE SET product_price = '$price' WHERE id = $id";
-       $result2 = mysqli_query($conn, $query2);
-       
-       $query3 = "UPDATE TEST_I.QUANTITY SET product_quantity = '$quantity' WHERE id = $id";
-       $result3 = mysqli_query($conn, $query3);
-       if($result1 && $result2 && $result3){
+       if($result1){
            header("Location: products.php");
        } else {
            die("Error: ". mysqli_error($conn));
