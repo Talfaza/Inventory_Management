@@ -1,8 +1,17 @@
 <?php
 
 include "../database/connect.php";
+include "../classes/Cart.php";
 
 $conn = (new Connection())->getConnection();
+
+$id = NULL;
+$name = NULL;
+$quantity = NULL;
+$price = NULL;
+
+$cart = new Cart($name, $price ,$quantity,$conn);
+
 
 
 
@@ -77,6 +86,12 @@ $conn = (new Connection())->getConnection();
                         $name = $row['NAME_P'];
                         $quantity = $row['QUANTITY'];
                         $price = $row['PRICE'];
+
+                        $cart->setId($id);
+                        $cart->setName($name);
+                        $cart->setQuantity($quantity);
+                        $cart->setPrice($price);
+                        
                         $cumulativeTotal += $quantity * $price; 
                         if (empty($id)){
                           echo "<tr>";

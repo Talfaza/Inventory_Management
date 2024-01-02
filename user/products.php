@@ -1,13 +1,17 @@
 <?php
 include "../database/connect.php";
+include "../classes/Product.php";
+include "../classes/Cart.php";
 session_start();
 
 $conn = (new Connection())->getConnection();
 
-$name = "";
-$price = "";
-$quantity = "";
-$cartNumber = "";
+$name = NULL;
+$price = NULL;
+$quantity = NULL;
+$cartNumber = NULL;
+$product = new Product($name,$price,$quantity);
+$cart = new Cart($name,$price,$quantity,$conn);
 
 if(isset($_GET['pid'])){
     $id = $_GET['pid'];
@@ -17,37 +21,31 @@ if(isset($_GET['pid'])){
     
       if($result){
         $row = mysqli_fetch_assoc($result);
+        $id = $row['id_product'];
         $name =  $row['product_name'];
         $price = $row['product_price_id'];
         $quantity = $row['product_quantity_id'];
+
+        $product->setId($id);
+        $product->setName($name);
+        $product->setPrice($price);
+        $product->setQuantity($quantity);
+
+        $cart->setId($id);
+        $cart->setName($name);
+        $cart->setPrice($price);
+        $cart->setQuantity($quantity);
+
+        // var_dump($product);
+
       } else {
         die("Error : ". mysqli_error($conn));
       }
 }
 
-function imageDisplay($id) {
-    switch ($id) {
-        case 1:
-            return "pc.png";
-        case 2:
-            return "laptop.png";
-        case 3:
-            return "raspberry.png";
-        default:
-            return "default.png";
-    }
-}
+$cart->insertCart();
 
-if (isset($_POST['submit'])){
-    $quantity = $_POST['qte_product'];
-
-    $queryCart = "INSERT INTO TEST_I.CART(NAME_P,PRICE,QUANTITY)
-                  VALUES ('$name', '$price', '$quantity')";
-    
-    $resultCart = mysqli_query($conn, $queryCart);
-    
-    
-}
+ 
 ?>
 
 <!DOCTYPE html>
@@ -104,7 +102,7 @@ if (isset($_POST['submit'])){
                 <div class="columns is-vcentered">
                     <div class="column is-5">
                         <figure class="image is-1by1">
-                            <img src="../img/<?php echo imageDisplay($id); ?>" alt="Description">
+                            <img src="../img/<?php  echo $product->imageDisplay($id); ?>" alt="Description">
                         </figure>
                     </div>
                     <div class="column is-6 is-offset-1">

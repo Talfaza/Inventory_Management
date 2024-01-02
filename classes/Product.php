@@ -23,6 +23,26 @@ class Product {
 
     public function getQuantity() { return $this->quantity; }
     public function setQuantity($quantity) { $this->quantity = $quantity; }
+
+
+    public function imageDisplay($id) {
+        switch ($id) {
+            case 1:
+                return "pc.png";
+            case 2:
+                return "laptop.png";
+            case 3:
+                return "raspberry.png";
+            default:
+                return "default.png";
+        }
+    }
+
+
 }
+
+
+
+
 
 ?>
