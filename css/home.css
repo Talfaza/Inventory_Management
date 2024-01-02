@@ -10,7 +10,9 @@ html {
   color: white;
 }
 
-
+/* .navbar-item:hover .navbar-link {
+  color: #00d1b2 !important;
+} */
 
 .navbar .navbar-item a {
   margin-left: 1rem;
