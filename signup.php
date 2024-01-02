@@ -26,15 +26,8 @@ if (isset($_POST['submit'])) {
     $password = $User->getPassword();
 
     $User->fetchEmail();
-    $check_result = $check_query->get_result();
 
-    if ($check_result->num_rows > 0) {
-        echo "Error: Email is already in use. Please choose a different email.";
-    } else {
-        $User->insertUser();
-    }
-
-    $check_query->close();
+   $User->checkEmail();
 }
 ?>
 <!DOCTYPE html>

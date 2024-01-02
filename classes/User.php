@@ -6,13 +6,17 @@ class User {
     private $username;
     private $email;
     private $password;
-    private $conn; // Added property
+    private $conn;
+
+    public $check_query;
+
 
     public function __construct($username, $email, $password, $conn) {
         $this->username = $username;
         $this->email = $email;
         $this->password = $password;
         $this->conn = $conn; // Initialize the connection property
+        $this->check_query =  $check_query = $conn->prepare("SELECT * FROM TEST_I.USER WHERE email = ?");
     }
 
     // Getters
@@ -48,9 +52,8 @@ class User {
     }
 
     public function fetchEmail(){
-        $check_query = $this->conn->prepare("SELECT * FROM TEST_I.USER WHERE email = ?");
-        $check_query->bind_param("s",$this->email);
-        $check_query->execute();
+        $this->check_query->bind_param("s",$this->email);
+        $this->check_query->execute();
         
     }
 
@@ -66,10 +69,24 @@ class User {
     }
 
     public function numRow($result) {
-            return $result->num_rows;
+        return $result->num_rows;
+}
+
+    
+    public function checkEmail() {
+        $check_result = $this->check_query->get_result();
+
+    
+        if (self::numRow($check_result) > 0) {
+            echo "Error: Email is already in use. Please choose a different email.";
+        } else {
+            $this->insertUser();
+        }
     }
 
+   
 }
+
 
    
 ?>
