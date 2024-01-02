@@ -41,6 +41,7 @@ class Cart {
             $queryCart = "INSERT INTO TEST_I.CART(NAME_P,PRICE,QUANTITY,user_id)
                           VALUES ('$this->name', '$this->price', '$quantity','$this->user_id')";
             
+            
             $resultCart = mysqli_query($this->conn, $queryCart);
             
             
