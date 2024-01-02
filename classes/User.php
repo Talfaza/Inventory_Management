@@ -51,10 +51,21 @@ class User {
         $insert_query->close();
     }
 
-    public function fetchEmail(){
-        $this->check_query->bind_param("s",$this->email);
+ 
+    public function fetchEmail() {
+        $this->check_query->bind_param("s", $this->email);
         $this->check_query->execute();
-        
+    }
+
+    public function checkEmail() {
+        $this->fetchEmail(); // Execute the query
+        $check_result = $this->check_query->get_result();
+
+        if ($this->numRow($check_result) > 0) {
+            echo "Error: Email is already in use. Please choose a different email.";
+        } else {
+            $this->insertUser();
+        }
     }
 
     public function fetchUser($user_value){
@@ -68,21 +79,23 @@ class User {
 
     }
 
+    public function fetchId($user_value){
+        $stmt = $this->conn->prepare("SELECT id FROM TEST_I.USER WHERE user = '$user_value'");
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result;
+
+
+    }
+
+
     public function numRow($result) {
         return $result->num_rows;
 }
 
     
-    public function checkEmail() {
-        $check_result = $this->check_query->get_result();
-
-    
-        if (self::numRow($check_result) > 0) {
-            echo "Error: Email is already in use. Please choose a different email.";
-        } else {
-            $this->insertUser();
-        }
-    }
+ 
 
    
 }

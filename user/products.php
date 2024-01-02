@@ -1,8 +1,12 @@
 <?php
 include "../database/connect.php";
-include "../classes/Product.php";
 include "../classes/Cart.php";
+include "../classes/Product.php";
 session_start();
+// echo    $_SESSION["id"];
+
+$userId = $_SESSION["id"];
+
 
 $conn = (new Connection())->getConnection();
 
@@ -11,7 +15,7 @@ $price = NULL;
 $quantity = NULL;
 $cartNumber = NULL;
 $product = new Product($name,$price,$quantity);
-$cart = new Cart($name,$price,$quantity,$conn);
+$cart = new Cart($name,$price,$quantity,$conn,$userId);
 
 if(isset($_GET['pid'])){
     $id = $_GET['pid'];
@@ -35,6 +39,9 @@ if(isset($_GET['pid'])){
         $cart->setName($name);
         $cart->setPrice($price);
         $cart->setQuantity($quantity);
+        $cart->setUserId($userId);
+
+        
 
         // var_dump($product);
 
@@ -44,6 +51,7 @@ if(isset($_GET['pid'])){
 }
 
 $cart->insertCart();
+
 
  
 ?>
@@ -89,9 +97,15 @@ $cart->insertCart();
 
                     <div class="navbar-end">
                         <div class="navbar-item">
-                            <a href="cart.php">
+                            <a href="<?php echo "cart.php?id=".$userId;?>">
                                 <button class="button is-primary"><i class="fa-solid fa-cart-shopping"></i>&nbsp;Cart</button>
                             </a>
+                            
+                        <a href="">
+                        
+                        <button class="button is-primary"><i class="fa-solid fa-cart-shopping"></i>&nbsp; Logout</button>
+                        
+                        </a>
                         </div>
                     </div>
                 </div>

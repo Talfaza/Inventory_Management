@@ -1,7 +1,18 @@
 <?php
+session_start();  
 
 
+include "../database/connect.php";
+
+$conn = (new Connection())->getConnection();
+
+if(isset($_GET['id'])){
+    $id = $_GET['id'];
+   
+}
 ?>
+
+
 
 
 
@@ -40,9 +51,15 @@
             <div class="navbar-end">
               <div class="navbar-item">
       
-                  <a href="cart.php">
+                  <a href="<?php echo "cart.php?id=".$id?>">
                         
                         <button class="button is-primary"><i class="fa-solid fa-cart-shopping"></i>&nbsp; Cart</button>
+                        
+                  </a>
+
+                  <a href="">
+                        
+                        <button class="button is-primary"><i class="fa-solid fa-cart-shopping"></i>&nbsp; Logout</button>
                         
                   </a>
             

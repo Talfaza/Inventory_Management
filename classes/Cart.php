@@ -8,11 +8,14 @@ class Cart {
 
     private $conn;
 
-    public function __construct($name, $price, $quantity,$conn) {
+    private $user_id;
+
+    public function __construct($name, $price, $quantity,$conn,$user_id) {
         $this->name = $name;
         $this->price = $price;
         $this->quantity = $quantity;
         $this->conn = $conn;
+        $this->user_id = $user_id;
     }
 
     public function getId() { return $this->id; }
@@ -27,13 +30,16 @@ class Cart {
     public function getQuantity() { return $this->quantity; }
     public function setQuantity($quantity) { $this->quantity = $quantity; }
 
+    public function getUserId(){return $this->user_id;}
+    public function setUserId($user_id){$this->user_id = $user_id;}
+
 
    public function insertCart(){
         if (isset($_POST['submit'])){
             $quantity = $_POST['qte_product'];
         
-            $queryCart = "INSERT INTO TEST_I.CART(NAME_P,PRICE,QUANTITY)
-                          VALUES ('$this->name', '$this->price', '$quantity')";
+            $queryCart = "INSERT INTO TEST_I.CART(NAME_P,PRICE,QUANTITY,user_id)
+                          VALUES ('$this->name', '$this->price', '$quantity','$this->user_id')";
             
             $resultCart = mysqli_query($this->conn, $queryCart);
             

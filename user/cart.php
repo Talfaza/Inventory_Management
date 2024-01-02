@@ -1,16 +1,20 @@
 <?php
+session_start();
 
 include "../database/connect.php";
 include "../classes/Cart.php";
 
 $conn = (new Connection())->getConnection();
+$userId = $_SESSION["id"];
 
 $id = NULL;
 $name = NULL;
 $quantity = NULL;
 $price = NULL;
 
-$cart = new Cart($name, $price ,$quantity,$conn);
+$cart = new Cart($name, $price ,$quantity,$conn,$userId);
+
+
 
 
 
@@ -78,7 +82,7 @@ $cart = new Cart($name, $price ,$quantity,$conn);
             <tbody>
                 <?php
                 $cumulativeTotal = NULL;
-                $querySelection = "SELECT * FROM TEST_I.CART";
+                $querySelection = "SELECT * FROM TEST_I.CART WHERE user_id = '$userId'";
                 $result = mysqli_query($conn, $querySelection);
                 if ($result) {
                     while ($row = mysqli_fetch_array($result)) {

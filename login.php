@@ -8,17 +8,13 @@ $user_value = "";
 $pass_value = "";
 $email = "";
 
-$User = new User($user_value,$email,$pass_value,$conn);
+$User = new User($user_value, $email, $pass_value, $conn);
 
 if (isset($_POST['submit'])) {
     $user_value = $_POST['user'];
     $pass_value = $_POST['password'];
 
-    $User->fetchUser($user_value);
     $result = $User->fetchUser($user_value);
-
-    
-
 
     if ($User->numRow($result) > 0) {
         $row = $result->fetch_assoc();
@@ -26,29 +22,28 @@ if (isset($_POST['submit'])) {
         $check_user = $row['user'];
         $check_pass = $row['pass'];
 
+        if ($user_value == $check_user && $pass_value == $check_pass) {
+            session_start();
+            $idResult = $User->fetchId($user_value);
+            $idRow = $idResult->fetch_assoc();
+            $id = $idRow['id'];
 
+            // Start the session and store the User object
+            $_SESSION["user"] = $User->getUsername();
+            $_SESSION["id"] = $id;
 
-                if ($user_value == $check_user && $pass_value == $check_pass) {
-                    session_start();
-
-                    // Start the session and store the User object
-                    
-                    $_SESSION["user"] = $user;
-
-                
-                   if ($user_value == "admin"  && $pass_value == "admin") {
-                        header("Location: admin\home.php");
-                   }else{
-                        header("Location: user/home.php");
-                   }
-                    exit;
-                }
-
-  
-
+            if ($user_value == "admin" && $pass_value == "admin") {
+                header("Location: admin/home.php");
+            } else {
+                header("Location: user/products_display.php?id=" . $id);
+            }
+            exit;
+        }
     }
 }
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

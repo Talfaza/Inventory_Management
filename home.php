@@ -58,10 +58,10 @@ $conn->close();
 
           <div id="navbarBasicExample" class="navbar-menu">
             <div class="navbar-start">
-              <a class="navbar-item">
+              <a class="navbar-item ">
                 Home
               </a>
-              <a class="navbar-item">
+              <a class="navbar-item ">
                 Blog Posts
               </a>
             </div>

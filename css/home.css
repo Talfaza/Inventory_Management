@@ -11,12 +11,6 @@ html {
 }
 
 
-.navbar .navbar-item.is-active {
-  color: #e4e2ff;
-  font-weight: 700;
-}
-
-
 
 .navbar .navbar-item a {
   margin-left: 1rem;
