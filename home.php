@@ -54,19 +54,33 @@ $conn->close();
   <section class="hero is-medium">
     <div class="hero-head">
       <div class="container">
-        <nav class="navbar" role="navigation" aria-label="main navigation">
+      <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
 
-          <div id="navbarBasicExample" class="navbar-menu">
-            <div class="navbar-start">
-              <a class="navbar-item ">
-                Home
-              </a>
-              <a class="navbar-item ">
-                Blog Posts
-              </a>
-            </div>
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item">
+          Home
+      </a>
 
-            <div class="navbar-end">
+
+      <a class="navbar-item is-focus">
+        Products
+      </a>
+
+      <a class="navbar-item is-focus">
+        Contact
+      </a>
+
+    </div>
+
+    <div class="navbar-end">
               <div class="navbar-item">
                   <a href="login.php">
                         
@@ -81,8 +95,7 @@ $conn->close();
             
               </div>
             </div>
-          </div>
-        </nav>
+</nav>
       </div>
     </div>
     <div class="hero-body">
@@ -95,8 +108,15 @@ $conn->close();
   </section>
   <section class="blog-posts">
     <div class="container">
-   
-          <hr>
+
+    <div class="hero-body">
+      <div class="container has-text-centered">
+            <br><h2 class="title">
+          Our Products
+        </h2>
+      </div>
+      
+      <hr>
           <div class="columns is-multiline">
       
             <div class="column post is-4">
@@ -108,20 +128,18 @@ $conn->close();
                   <h1 class="title post-title">Gaming Pc</h1>
                   <p class="post-excerpt">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus ratione harum eaque, animi nulla tempore quis, quam voluptatum.</p>
                   <br>
-                  <a href="#" class="button is-primary">Read More</a>
                 </div>
               </article>
             </div>
             <div class="column post is-4">
               <article class="columns is-multiline">
-                <div class="column is-12 post-img">
-                  <img src="img/laptop.png" height="200px" width="270px alt="Featured Image">
+                <div class="column is-12 post-img ">
+                  <img src="img/laptop.png" id ="laptop"  height="200px" width="270px" alt="Featured Image" style="margin-left:55px;">
                 </div>
                 <div class="column is-12 featured-content ">
                   <h1 class="title post-title">Gaming Laptop</h1>
                   <p class="post-excerpt">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus ratione harum eaque, animi nulla tempore quis, quam voluptatum.</p>
                   <br>
-                  <a href="#" class="button is-primary">Read More</a>
                 </div>
               </article>
             </div>
@@ -134,7 +152,6 @@ $conn->close();
                   <h1 class="title post-title">Raspberry Pi</h1>
                   <p class="post-excerpt">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus ratione harum eaque, animi nulla tempore quis, quam voluptatum.</p>
                   <br>
-                  <a href="#" class="button is-primary">Read More</a>
                 </div>
               </article>
             </div>
@@ -146,6 +163,9 @@ $conn->close();
 
 
 
+    </div>
+      
+   
 
   <form action="" method="POST" id="contactForm">
     <section class="section">
