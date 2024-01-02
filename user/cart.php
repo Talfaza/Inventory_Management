@@ -109,7 +109,7 @@ $cart = new Cart($name, $price ,$quantity,$conn,$userId);
                           echo "<tr>";
                           echo "<td>" . $name . "</td>";
                           echo "<td>" . $quantity . "</td>";
-                          echo "<td>" . $price . "</td>";
+                          echo "<td>" . $price . "$" . "</td>";
                           echo "<td>" . $quantity * $price . "</td>";
                           echo "<td><a href='deleteCard.php?deleteid=" . $id . "' class='button is-danger'>Delete</a></td></td>";
                           echo "</tr>";
@@ -126,7 +126,7 @@ $cart = new Cart($name, $price ,$quantity,$conn,$userId);
         </table><br>
         <?php 
           if (!empty($id)) {
-            echo "Total : $cumulativeTotal";
+            echo "Total : $cumulativeTotal"."$";
           }
         ?>
     </div>
