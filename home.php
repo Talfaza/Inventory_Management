@@ -16,11 +16,6 @@ if (isset($_POST['submit'])) {
     
     $contact = new Contact($user, $email, $message,$status,$conn); // 0 as not treated
 
-    $contact->setUserContact($user);
-    $contact->setEmailContact($email);
-    $contact->setMsgContact($message);
-    $contact->setStatusContact($status);
-
     $userContact= $contact->getUserContact();
     $emailContact = $contact->getEmailContact();
     $messageContact = $contact->getMsgContact();
