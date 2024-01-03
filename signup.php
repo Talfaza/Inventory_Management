@@ -14,9 +14,9 @@ if (isset($_POST['submit'])) {
 
     $User = new User($username,$email,$password,$conn);
 
-    $User->setUsername($username);
-    $User->setEmail($email);
-    $User->setPassword($password);
+    // $User->setUsername($username);
+    // $User->setEmail($email);
+    // $User->setPassword($password);
 
     $_SESSION['User'] = serialize($User);
 
