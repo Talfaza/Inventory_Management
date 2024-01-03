@@ -14,12 +14,11 @@ if (isset($_POST['submit'])) {
     $message = $_POST['message']; 
     $status = 0;
     
-    $contact = new Contact($user, $email, $message,$status,$conn); // 0 as not treated
+    $contact = new Contact($user, $email, $message,$conn); // 0 as not treated
 
     $userContact= $contact->getUserContact();
     $emailContact = $contact->getEmailContact();
     $messageContact = $contact->getMsgContact();
-    $statusContact = $contact->getStatusContact();
     
     $contact->insertData($userContact,$emailContact,$messageContact,$status);
 }

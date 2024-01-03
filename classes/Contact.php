@@ -6,15 +6,14 @@ class Contact {
     private $userContact;
     private $emailContact;
     private $msgContact;
-    private $statusContact;
+    // private $statusContact;
     private $conn;
 
     // Constructor
-    public function __construct($userContact, $emailContact, $msgContact, $statusContact,$conn) {
+    public function __construct($userContact, $emailContact, $msgContact,$conn) {
         $this->userContact = $userContact;
         $this->emailContact = $emailContact;
         $this->msgContact = $msgContact;
-        $this->statusContact = $statusContact;
         $this->conn = $conn;
     }
 
@@ -25,7 +24,6 @@ class Contact {
 
     public function getMsgContact() { return $this->msgContact; }
     
-    public function getStatusContact() { return $this->statusContact; }
 
     // Setters
     public function setUserContact($userContact) {$this->userContact = $userContact;}
@@ -34,7 +32,6 @@ class Contact {
 
     public function setMsgContact($msgContact) {$this->msgContact = $msgContact;}
     
-    public function setStatusContact($statusContact) {$this->statusContact = $statusContact;}
 
     public function insertData($userContact,$emailContact,$messageContact,$status){
         $stmt = $this->conn->prepare("INSERT INTO TEST_I.CONTACT (user, email, msg, stat) VALUES (?, ?, ?,?)");
