@@ -11,8 +11,8 @@ if (isset($_POST['submit'])) {
 
     $user    =  $_POST['user'];
     $email   =  $_POST['email'];
-    $message = $_POST['message']; 
-    $status = 0;
+    $message =  $_POST['message']; 
+    $status  =  0;
     
     $contact = new Contact($user, $email, $message,$conn); // 0 as not treated
 

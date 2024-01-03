@@ -47,12 +47,12 @@ function selectDatabase($dbname){
 function createTable($query){
     
     if (mysqli_query($this->conn, $query)) {
-        echo "Table Clients created successfully";
+        echo "Table created successfully <br>" ;
         } else {
         echo "Error creating table: " . mysqli_error($this->conn);
         }
         
-        
+     
 }
 function insertTable($query){
     
