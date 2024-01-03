@@ -88,7 +88,7 @@ $cart = new Cart($name, $price ,$quantity,$conn,$userId);
                     while ($row = mysqli_fetch_array($result)) {
                         $id = $row['id'];
                         $name = $row['NAME_P'];
-                        $quantity = $row['QUANTITY'];
+                        $quantity = $row['QUANTITY']; 
                         $price = $row['PRICE'];
 
                         $cart->setId($id);

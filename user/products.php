@@ -15,6 +15,7 @@ $price = NULL;
 $quantity = NULL;
 $cartNumber = NULL;
 $qte_bought = NULL;
+
 $product = new Product($name,$price,$quantity,$conn);
 $cart = new Cart($name,$price,$quantity,$conn,$userId);
 
