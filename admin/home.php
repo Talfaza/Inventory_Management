@@ -105,16 +105,11 @@ $conn = (new Connection())->getConnection();
                         </div>
                         <div class="tile is-parent">
                             <article class="tile is-child box">
-                                <p class="title">00</p>
+                                <p class="title">03</p>
                                 <p class="subtitle">Products</p>
                             </article>
                         </div>
-                        <div class="tile is-parent">
-                            <article class="tile is-child box">
-                                <p class="title">00$</p>
-                                <p class="subtitle">Profit</p>
-                            </article>
-                        </div>
+                        
                     </div>
                 </section>
                 <div class="columns">
